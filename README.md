@@ -1,5 +1,5 @@
 # Cortex-A9 Snoop Control Unit Configuration Tool
-This tool allows you to read or write the configuration of the Snoop Control Unit (SCU) integrated into all ARM Cortex-A9 MPCore processors. For more information about the SCU, see section 2 of ARM DDI0407G: *ARM Cortex-A9 MPCore Technical Reference Manual* Issue G.
+This tool allows you to read or write the configuration of the Snoop Control Unit (SCU) integrated into all ARM Cortex-A9 MPCore processors. For more information about the SCU, see section 2 of ARM DDI0407G: *ARM Cortex-A9 MPCore Technical Reference Manual, Issue G*.
 
 The configuration offset in `scu.h` is presently set as appropriate for the i.MX6 Dual/Quad development board. Please change `SCU_BASE_ADDR` when using this application on other boards (typically this offset can be found in your board's reference manual).
 
@@ -36,4 +36,39 @@ Usage:
 	cpu[0,1,2,3]_scu_nacl [0,1] Enable non-secure write access to SCU configuration from CPU0, 1, 2, or 3
 	cpu[0,1,2,3]_scu_nacl_timer [0,1] Enable non-secure write access to SCU timers and watchdog from CPU0, 1, 2, or 3
 	cpu[0,1,2,3]_scu_nacl_gtimer [0,1] Enable non-secure write access to SCU global timers from CPU0, 1, 2, or 3
+```
+
+## Example
+```
+root@bruford~# /tmp/scu read
+Snoop Control Unit (SCU) Enabled
+Address filtering is enabled
+SCU RAM parity is enabled
+SCU speculative linefill is disabled
+ACP requests are not forced to AXI master 0
+SCU auto standby is enabled
+Interrupt Controller (IC) auto standby is disabled
+You have 4 CPUs
+CPU0 is in SMP mode
+CPU0 has a 32KB cache with 128 indexes per tag RAM
+CPU1 is in SMP mode
+CPU1 has a 32KB cache with 128 indexes per tag RAM
+CPU2 is in SMP mode
+CPU2 has a 32KB cache with 128 indexes per tag RAM
+CPU3 is in SMP mode
+CPU3 has a 32KB cache with 128 indexes per tag RAM
+CPU0 is in normal power mode
+CPU1 is in normal power mode
+CPU2 is in normal power mode
+CPU3 is in normal power mode
+Filtering starts at address 0
+Filtering ends at address 0
+CPU0 is allowed to change SCU registers
+CPU1 is allowed to change SCU registers
+CPU2 is allowed to change SCU registers
+CPU3 is allowed to change SCU registers
+In non-secure mode, CPU0 may change SCU registers, may not change their private timer and watchdog, and may not change the global timer
+In non-secure mode, CPU1 may change SCU registers, may not change their private timer and watchdog, and may not change the global timer
+In non-secure mode, CPU2 may change SCU registers, may not change their private timer and watchdog, and may not change the global timer
+In non-secure mode, CPU3 may change SCU registers, may not change their private timer and watchdog, and may not change the global timer
 ```
