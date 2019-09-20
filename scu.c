@@ -241,7 +241,7 @@ unsigned int parse_range(unsigned int min, unsigned int max, unsigned int base, 
 }
 
 void print_help(char* prog_name) {
-    fprintf(stdout, "This program can read and configure the Snoop Control"
+    fprintf(stdout, "This program can read and configure the Snoop Control "
             "Unit (SCU) registers on Cortex-A9 MPCore processors.\nUsage:\n"
             "  %s read\n  %s write <key> <value>\n", prog_name, prog_name);
     fprintf(stdout, "    Available key and value ranges:\n"
