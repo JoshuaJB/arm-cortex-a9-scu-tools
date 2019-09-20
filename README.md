@@ -1,4 +1,4 @@
-# Cortex-A9 Snoop Control Unit Configuration Tool
+# Cortex-A9 MPCore Snoop Control Unit Configuration Tool
 This tool allows you to read or write the configuration of the Snoop Control Unit (SCU) integrated into all ARM Cortex-A9 MPCore processors. For more information about the SCU, see section 2 of ARM DDI0407G: *ARM Cortex-A9 MPCore Technical Reference Manual, Issue G*.
 
 The configuration offset in `scu.h` is presently set as appropriate for the i.MX6 Dual/Quad development board. Please change `SCU_BASE_ADDR` when using this application on other boards (typically this offset can be found in your board's reference manual).
