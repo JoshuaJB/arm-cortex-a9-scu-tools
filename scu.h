@@ -11,36 +11,44 @@ typedef struct {
     unsigned int address_filtering_enable:1;
     unsigned int scu_ram_parity_enable:1;
     unsigned int scu_speculative_linefill_enable:1;
-    unsigned int force_all_to_port0_enable:1;
+    unsigned int force_acp_to_port0:1;
     unsigned int scu_standby_enable:1;
     unsigned int ic_standby_enable:1;
     unsigned int padding_1:25;
-}__attribute__((packed)) SCU_CTRL_t;
+} SCU_CTRL_t;
 
 typedef struct {
     unsigned int cpu_count:2;
     unsigned int padding_1:2;
-    unsigned int cpu_0_smp:1;
-    unsigned int cpu_1_smp:1;
-    unsigned int cpu_2_smp:1;
-    unsigned int cpu_3_smp:1;
-    unsigned int cpu_0_tag:2;
-    unsigned int cpu_1_tag:2;
-    unsigned int cpu_2_tag:2;
-    unsigned int cpu_3_tag:2;
+    unsigned int cpu0_smp:1;
+    unsigned int cpu1_smp:1;
+    unsigned int cpu2_smp:1;
+    unsigned int cpu3_smp:1;
+    unsigned int cpu0_tag:2;
+    unsigned int cpu1_tag:2;
+    unsigned int cpu2_tag:2;
+    unsigned int cpu3_tag:2;
     unsigned int padding_2:16;
-}__attribute__((packed)) SCU_CFG_t;
+} SCU_CFG_t;
 
 typedef struct {
-    unsigned int cpu_0_pwr:2;
+    unsigned int cpu0_pwr:2;
     unsigned int padding_1:6;
-    unsigned int cpu_1_pwr:2;
+    unsigned int cpu1_pwr:2;
     unsigned int padding_2:6;
-    unsigned int cpu_2_pwr:2;
+    unsigned int cpu2_pwr:2;
     unsigned int padding_3:6;
-    unsigned int cpu_3_pwr:2;
+    unsigned int cpu3_pwr:2;
     unsigned int padding_4:6;
-}__attribute__((packed)) PWR_STAT_t;
+} PWR_STAT_t;
+
+typedef struct {
+    unsigned int cpu0_ways:4;
+    unsigned int cpu1_ways:4;
+    unsigned int cpu2_ways:4;
+    unsigned int cpu3_ways:4;
+    unsigned int padding_1:16;
+} TAG_INVAL_t;
 
 typedef struct {
     unsigned int cpu0:1;
@@ -48,7 +56,7 @@ typedef struct {
     unsigned int cpu2:1;
     unsigned int cpu3:1;
     unsigned int padding_1:28;
-}__attribute__((packed)) SCU_ACL_t;
+} SCU_ACL_t;
 
 typedef struct {
     unsigned int cpu0_reg:1;
@@ -64,13 +72,13 @@ typedef struct {
     unsigned int cpu2_gtimer:1;
     unsigned int cpu3_gtimer:1;
     unsigned int padding_1:20;
-}__attribute__((packed)) SCU_NACL_t;
+} SCU_NACL_t;
 
 typedef struct {
     SCU_CTRL_t ctrl;
     SCU_CFG_t cfg;
     PWR_STAT_t pwr_stat;
-    uint32_t inval_all_reg_in_secure; // Write-only, always reads as 0
+    TAG_INVAL_t tag_inval; // Write-only, always reads as 0
     uint32_t padding_1[12];
     uint32_t filter_start_addr;
     uint32_t filter_end_addr;
