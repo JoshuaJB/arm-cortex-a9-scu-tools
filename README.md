@@ -38,7 +38,8 @@ Usage:
 	cpu[0,1,2,3]_scu_nacl_gtimer [0,1] Enable non-secure write access to SCU global timers from CPU0, 1, 2, or 3
 ```
 
-## Example
+## Example Output
+This is from running the `read` command on an iMX6 Quad running a variant of Linux 4.1.3:
 ```
 root@bruford~# /tmp/scu read
 Snoop Control Unit (SCU) Enabled
